@@ -19,7 +19,7 @@ and before u install vlc plugin make sure u have installed it with `apt` reposit
    - libvlc : `sudo apt-get install libvlc-dev`
 
 ## Usage
-##### Before running the file, convert an existing audio / video file(any format) to streamable format(preferred mp4) using the command `ffmpeg -i inputfile.mp4 -f mpegts streamable_output.mp4`.After that, 
+**Before running the file, convert an existing audio / video file(any format) to streamable format(preferred mp4) using the command `ffmpeg -i inputfile.mp4 -f mpegts streamable_output.mp4`.** After that, 
 
 - Server :
   - Compiling : `gcc iserver.c -o server -lpthread`
