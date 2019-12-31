@@ -11,8 +11,6 @@ way communication for fetching radio list(TCP) and other for streaming service(U
 The Project includes many `GUI` and `VLC` plugins which will be needed for displaying the video file recieved continously.
 
 -Server File : Only GCC version 8 or above is needed. 
- 
- Before proceeding, mae sure you do `sudo apt-get update`
 -Client File : It uses `Gtk2` for GUI and libvlc for integrating `vlc` window in the GUI 
  -Gtk2 : `sudo apt-get install libgtk-3-dev`
  -libvlc : `sudo apt-get install libvlc-dev`
