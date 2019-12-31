@@ -10,7 +10,8 @@ way communication for fetching radio list(TCP) and other for streaming service(U
 
 The Project includes many `GUI` and `VLC` plugins which will be needed for displaying the video file recieved continously.
 and before u install vlc plugin make sure u have installed it with `apt` repository and not with `snap` repository.
-#### For Vlc media Player : `sudo apt install vlc` (if installed with snap, uninstall it and install with apt).
+
+**For Vlc media Player : `sudo apt install vlc` (if installed with snap, uninstall it and install with apt).**
 
 - Server File : `sudo apt install ffmpeg`
 - Client File : It uses `Gtk2` for GUI and libvlc for integrating `vlc` window in the GUI 
