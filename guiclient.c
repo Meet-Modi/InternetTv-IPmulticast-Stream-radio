@@ -36,7 +36,9 @@
 
 #define BORDER_WIDTH 6
 
-#define input_video "file:///home/meet/Project/output.mp4"
+/*IMPORTANT DO NOT REMOVE file:// in the path, it needs to be a file url*/
+
+#define input_video "file:///home/meet/Project/output.mp4"  
 
 int flag;
 int pause_flag;
