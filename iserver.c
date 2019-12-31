@@ -118,12 +118,12 @@ void *threadfunctionInfo(void *input){
 	info_port = ((struct args*)input)->INFO_PORT;
 	strcpy(radio,((struct args*)input)->RADIO);
 	buf_SIZE = ((struct args*)input)->BUF_SIZE;
-    strcpy(video_name,((struct args*)input)->video_name);
-    strcpy(duration_file_name, ((struct args*)input)->duration_file_name);
+    	strcpy(video_name,((struct args*)input)->video_name);
+    	strcpy(duration_file_name, ((struct args*)input)->duration_file_name);
 	
 	printf("%s\t%d\t%d\t%s\n", radio, info_port, buf_SIZE, duration_file_name);
 
-/*----------------------    SOCKET MULTI-CAST   --------------------*/
+	/*----------------------    SOCKET MULTI-CAST   --------------------*/
 	int multi_sockfd;
 	struct sockaddr_in servaddr;
 
@@ -137,10 +137,10 @@ void *threadfunctionInfo(void *input){
 	servaddr.sin_family = AF_INET;
   	servaddr.sin_addr.s_addr = inet_addr(radio);
   	servaddr.sin_port = htons(info_port);
-/*------------------------------------------------------------------*/
-/*----------------------	BUFFER DECLARATIONS	--------------------*/
+	/*------------------------------------------------------------------*/
+	/*----------------------    BUFFER DECLARATIONS	  ------------------*/
 	int send_status;
-/*------------------------------------------------------------------*/
+	/*------------------------------------------------------------------*/
 	int totTime = 60;
 
 	songs_playlist.type = 12;
@@ -155,9 +155,9 @@ void *threadfunctionInfo(void *input){
 		printf("Here Error.....");
 		if ((send_status = sendto(multi_sockfd,&songs_playlist, sizeof(songs_playlist),0,(struct sockaddr *)&servaddr, sizeof(servaddr))) == -1){
 			printf("printing\n");
-      		perror("sender: sendto");
-      		exit(1);
-    	}
+      			perror("sender: sendto");
+      			exit(1);
+    		}
     	printf("Remaining time:--------------------------------------------- %d\n",songs_playlist.remaining_time_in_sec);
 
 	//	sleep(1);
@@ -260,11 +260,8 @@ void *threadfunctionUDP(void *input) {
 	multiport = ((struct args*)input)->MULTI_PORT;
 	strcpy(radio,((struct args*)input)->RADIO);
 	buf_SIZE = ((struct args*)input)->BUF_SIZE;
-    strcpy(video_name,((struct args*)input)->video_name);
-    strcpy(duration_file_name, ((struct args*)input)->duration_file_name);
-	
-	//pthread_t threadInfo;
-	//pthread_create(&threadInfo, NULL, threadfunctionInfo, input); 
+    	strcpy(video_name,((struct args*)input)->video_name);
+    	strcpy(duration_file_name, ((struct args*)input)->duration_file_name);
 	
 	printf("%s\t%d\t%d\t%s\n", radio, multiport, buf_SIZE, duration_file_name);
 
@@ -289,12 +286,12 @@ void *threadfunctionUDP(void *input) {
   	servaddr.sin_port = htons(multiport);
 	/*-------------------------------------------------------------------*/
 	
-	/*----------------------	BUFFER DECLARATIONS	--------------------*/
+	/*----------------------  BUFFER DECLARATIONS	 --------------------*/
 	char buffer[buf_SIZE];
 	int send_status;
 	/*------------------------------------------------------------------*/
 
-	/*----------------------	FILE DECLARATIONS	-------------------	*/
+	/*----------------------   FILE DECLARATIONS	--------------------*/
 	FILE *mediaFile;
 	int filesize , packet_index, read_size, total_sent;
 	packet_index = 1;
@@ -307,22 +304,22 @@ void *threadfunctionUDP(void *input) {
 	    printf("Error Opening Image File"); 
 	} 
 
-    fseek(mediaFile, 0, SEEK_END);
-    filesize = ftell(mediaFile);
-    fseek(mediaFile, 0, SEEK_SET);
-    printf("Total Picture size: %i\n",filesize);
+	fseek(mediaFile, 0, SEEK_END);
+	filesize = ftell(mediaFile);
+	fseek(mediaFile, 0, SEEK_SET);
+	printf("Total Picture size: %i\n",filesize);
 
-    char string[100]={0};
+        char string[100]={0};
    	int ret=0,hour=0,min=0,sec=0;
    	fread(string,1,100,duration_file);
    	sscanf(string , "%d:%d:%d" , &hour,&min,&sec);
-    int total_time = 3600*hour+60*min+sec;
+        int total_time = 3600*hour+60*min+sec;
 	int num_pac_sec = (filesize/total_time)/buf_SIZE;
 
 	printf("---------- %d , %s\n", num_pac_sec, duration_file_name);
 
-/*-------------------------------------------------------------------*/
-    execTime = 0;
+	/*-------------------------------------------------------------------*/
+        execTime = 0;
 	start = clock();
    	while(!feof(mediaFile)){
 
@@ -354,7 +351,7 @@ void *threadfunctionUDP(void *input) {
         //usleep(13000);
     }
     memset(buffer, 0, sizeof(buffer));
-  	close(multi_sockfd);
+    close(multi_sockfd);
     return NULL; 
 }
 
@@ -367,11 +364,9 @@ int main() {
 	struct args *stations1 = (struct args *)malloc(sizeof(struct args));
   	struct args *stations2 = (struct args *)malloc(sizeof(struct args));
 	struct args *stations3 = (struct args *)malloc(sizeof(struct args));
-  /*struct args *stations4 = (struct args *)malloc(sizeof(struct args));
+  	/*struct args *stations4 = (struct args *)malloc(sizeof(struct args));
   	struct args *stations5 = (struct args *)malloc(sizeof(struct args));
- */	
-
-
+ 	*/	
 
 	char sys_call[] = "ffmpeg -i station1.mp4  2>&1 | grep Duration | cut -d ' ' -f 4 | sed s/,// > duration_1.txt";
  	system(sys_call);
@@ -382,46 +377,48 @@ int main() {
 	
 
   	strcpy(stations1->RADIO, RADIO_1);
-    stations1->MULTI_PORT = MULTI_PORT1;
-    stations1->INFO_PORT = INFO_PORT1;    
-    stations1->BUF_SIZE = BUF_SIZE5;
+    	stations1->MULTI_PORT = MULTI_PORT1;
+    	stations1->INFO_PORT = INFO_PORT1;    
+    	stations1->BUF_SIZE = BUF_SIZE5;
 	strcpy(stations1->video_name, "station1.mp4");
 	strcpy(stations1->duration_file_name, "duration_1.txt");
  	pthread_create(&thread_id[0], NULL, threadfunctionUDP,(void*) stations1); 
 	
 	
 	strcpy(stations2->RADIO, RADIO_2);
-    stations2->MULTI_PORT = MULTI_PORT2;
-    stations2->INFO_PORT = INFO_PORT2;
-    stations2->BUF_SIZE = BUF_SIZE5;
+    	stations2->MULTI_PORT = MULTI_PORT2;
+    	stations2->INFO_PORT = INFO_PORT2;
+    	stations2->BUF_SIZE = BUF_SIZE5;
 	strcpy(stations2->video_name, "station2.mp4");
 	strcpy(stations2->duration_file_name, "duration_2.txt");
 	pthread_create(&thread_id[1], NULL, threadfunctionUDP,(void*) stations2); 
 
 	strcpy(stations3->RADIO, RADIO_3);
-    stations3->MULTI_PORT = MULTI_PORT3;
-    stations3->INFO_PORT = INFO_PORT3;
-    stations3->BUF_SIZE = BUF_SIZE5;
+    	stations3->MULTI_PORT = MULTI_PORT3;
+    	stations3->INFO_PORT = INFO_PORT3;
+    	stations3->BUF_SIZE = BUF_SIZE5;
 	strcpy(stations3->video_name, "station3.mp4");
 	strcpy(stations3->duration_file_name, "duration_3.txt");
 	pthread_create(&thread_id[2], NULL, threadfunctionUDP,(void*) stations3); 
 	
 	/*strcpy(stations4->RADIO, RADIO_4);
-    stations4->MULTI_PORT = MULTI_PORT4;
-    stations4->BUF_SIZE = BUF_SIZE2;
+    	stations4->MULTI_PORT = MULTI_PORT4;
+    	stations4->BUF_SIZE = BUF_SIZE2;
 	pthread_create(&thread_id[3], NULL, threadfunctionUDP,(void*) stations4); 
 	
 	strcpy(stations5->RADIO, RADIO_5);
-    stations5->MULTI_PORT = MULTI_PORT5;
-    stations5->BUF_SIZE = BUF_SIZE1;
+    	stations5->MULTI_PORT = MULTI_PORT5;
+    	stations5->BUF_SIZE = BUF_SIZE1;
 	pthread_create(&thread_id[4], NULL, threadfunctionUDP,(void*) stations5); 
 	*/
+	
 	pthread_join(thread_id[0], NULL);	
 	pthread_join(thread_id[1], NULL);
 
 	//pthread_join(thread_id[2], NULL);	
-/*	pthread_join(thread_id[3], NULL);	
-*/	pthread_join(threadTCP, NULL);	
+	//pthread_join(thread_id[3], NULL);	
+	
+	pthread_join(threadTCP, NULL);	
 
 
 	
