@@ -23,16 +23,13 @@ and before u install vlc plugin make sure u have installed it with `apt` reposit
 **Before running the file, convert an existing audio / video file(any format) to streamable format(preferred mp4) using the command `ffmpeg -i inputfile.mp4 -f mpegts streamable_output.mp4`.**
 
 Compiling:
-```bash
-make
-```
+- Server: 
+`gcc iserver.c -o server -lpthread`
+- Client:
+
+``gcc -o guiclient guiclient.c `pkg-config --libs gtk+-2.0 libvlc` `pkg-config --cflags gtk+-2.0 libvlc``
 
 Run:
-- Server: ```./server.out```
-- Client: ```sudo ./guiclient.out```
+- Server: ```./server```
+- Client: ```sudo ./guiclient```
 (`sudo` is mandatory as it accesses network interface for multicast IP)
-
-To delete all executables:
-```bash
-make clean
-```
