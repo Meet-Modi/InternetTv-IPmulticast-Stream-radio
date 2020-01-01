@@ -22,7 +22,11 @@ and before u install vlc plugin make sure u have installed it with `apt` reposit
 ## Usage
 **Before running the file, convert an existing audio / video file(any format) to streamable format(preferred mp4) using the command `ffmpeg -i inputfile.mp4 -f mpegts streamable_output.mp4`.**
 
-Compiling:
+**To Compile both use make file:**
+ ```bash
+make
+```
+**Or individually**
 - Server: 
 
 `gcc iserver.c -o server -lpthread`
