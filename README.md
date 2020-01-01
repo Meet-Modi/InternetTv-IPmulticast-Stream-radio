@@ -29,7 +29,7 @@ and before u install vlc plugin make sure u have installed it with `apt` reposit
     ```
     - Run :
     ```bash
-    ./server
+    ./server.out
     ```
 
 - Client :
@@ -39,6 +39,6 @@ and before u install vlc plugin make sure u have installed it with `apt` reposit
     ```
     - Run :
     ```bash
-    sudo ./guiclient
+    sudo ./guiclient.out
     ```
     (`sudo` is mandatory as it accesses network interface for multicast IP)
