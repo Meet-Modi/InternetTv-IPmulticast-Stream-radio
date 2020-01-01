@@ -24,6 +24,7 @@ and before u install vlc plugin make sure u have installed it with `apt` reposit
 
 Compiling:
 - Server: 
+
 `gcc iserver.c -o server -lpthread`
 - Client:
 
