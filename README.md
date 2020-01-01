@@ -29,10 +29,14 @@ make
 **Or individually**
 - Server: 
 
-`gcc iserver.c -o server -lpthread`
+```bash
+gcc iserver.c -o server -lpthread
+```
 - Client:
 
-``gcc -o guiclient guiclient.c `pkg-config --libs gtk+-2.0 libvlc` `pkg-config --cflags gtk+-2.0 libvlc``
+```bash
+gcc -o guiclient guiclient.c `pkg-config --libs gtk+-2.0 libvlc` `pkg-config --cflags gtk+-2.0 libvlc
+```
 
 Run:
 - Server: ```./server```
