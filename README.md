@@ -42,3 +42,14 @@ Run:
 - Server: ```./server```
 - Client: ```sudo ./guiclient```
 (`sudo` is mandatory as it accesses network interface for multicast IP)
+
+# Objective of Project
+The main aim of this project is to gain insights into the nature of multimedia traffic, especially, video traffic. The video traffic is projected
+to be the main driver of mobile data traffic growth. Here we have developed an Internet TV/Radio application that uses multicast. Here you need to 
+know about the concepts of the following: (a) sending data over a TCP connection (b)sending multimedia data over UDP, and (c) sending data in 
+structured manner so that applications implemented differently running on different platforms remain inter-operable. Here we have worked with Any 
+Source Multicast (ASM) model. In this model, multicast messages are identified by the multicast group address alone, and more than one sender
+can exist in a group.
+
+# GTK+ 3
+In order to get more details about GTK+ 3 you can visit: https://developer.gnome.org/gtk3/stable/
