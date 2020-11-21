@@ -8,10 +8,10 @@ all: server client
 	make client
 
 server:
-	$(CC) iserver.c -o server.out -lpthread
+	$(CC) iserver.c -o server -lpthread
 
 client:
-	$(CC) -o guiclient.out guiclient.c `pkg-config --libs gtk+-2.0 libvlc` `pkg-config --cflags gtk+-2.0 libvlc`
+	$(CC) -o guiclient guiclient.c `pkg-config --libs gtk+-2.0 libvlc` `pkg-config --cflags gtk+-2.0 libvlc`
 
 clean:
-	rm server.out guiclient.out
+	rm server guiclient
